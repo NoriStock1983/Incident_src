@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.router import apirouter
+from app.core import config
 
-app = FastAPI(title="IncidentManagement",version="0.0.1")
+app = FastAPI(title=config.APP_TITLE,version=config.APP_VERSION)
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,4 +16,4 @@ app.add_middleware(
     # Accept、Accept-Language、Content-Language、Content-Typeヘッダーが常に許可される。
     allow_headers=["*"],
 )
-app.include_router(apirouter,prefix="/api")
+app.include_router(apirouter,prefix=config.API_PRESFIX)

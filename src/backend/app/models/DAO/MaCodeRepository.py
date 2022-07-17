@@ -4,6 +4,7 @@ from app.db.dbaccess import DBAccess
 from sqlalchemy.sql import text
 
 
+
 class MaCodeRepository():
     # MA_CODEの内容を全件取得する。
     def selectallcode():
@@ -22,7 +23,6 @@ class MaCodeRepository():
             rows = con.execute(query)
             for row in rows:
                 allcodedata.append(row)
-                print(allcodedata)
                 
         except Exception as err:
             print(err)
@@ -37,7 +37,7 @@ class MaCodeRepository():
 
         getbyiddata = List[Select_MA_CODE]
         getbyiddata = []
-        # Databaseへアクセス
+
         con = DBAccess.connect_database()
 
         query = text("SELECT * FROM MA_CODE WHERE id = :id")
@@ -60,7 +60,7 @@ class MaCodeRepository():
 
         getbycodedata = List[Select_MA_CODE]
         getbycodedata = []
-        # Databaseへアクセス
+
         con = DBAccess.connect_database()
         query = text("SELECT * FROM MA_CODE WHERE code_1 = :code_1")
         print(query)
@@ -78,3 +78,20 @@ class MaCodeRepository():
             con.close()
 
         return getbycodedata
+
+
+    # MA_CODE内で、指定のIDのデータのActiveflgをOFFにする。
+    def deletebyidcode(codeid: int):
+
+
+        con = DBAccess.connect_database()
+
+        query = text("DELETE FROM MA_CODE WHERE id = :codeid")
+
+        try:
+            con.execute(query,**{"codeid": codeid})
+        except Exception as err:
+            print(err)
+        
+        finally:
+            con.close()

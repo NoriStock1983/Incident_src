@@ -3,10 +3,11 @@ fastapi==0.78.0
 uvicorn==0.18.1
 
 # DB接続用
-databases[postgresql]==0.6.0    # 追加
-SQLAlchemy==1.4.39              # 追加
-psycopg2==2.9.3                 # 追加
+databases[postgresql]==0.6.0 
+SQLAlchemy==1.4.39
+psycopg2==2.9.3
 
 # 認証
-pyjwt==2.4.0                    # 追加
-passlib[bcrypt]==1.7.4          # 追加
+python-jose[cryptography]==3.3.0                   # 追加
+passlib[bcrypt]==1.7.4                             # 追加
+python-multipart==0.0.5                            # 追加

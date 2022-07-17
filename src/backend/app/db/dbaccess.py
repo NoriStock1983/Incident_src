@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from app.core import config
 
 class DBAccess():
 
@@ -6,8 +7,8 @@ class DBAccess():
     def connect_database():
         
         try:
-            engine = create_engine('postgresql://postgres:postgres@host.docker.internal:5436/Incident')
-            #engine = create_engine('postgresql://postgres:postgrespw@host.docker.internal:49153')
+            engine = create_engine(config.DB_ACCESS_URL)
+#            engine = create_engine('postgresql://postgres:postgres@host.docker.internal:5436/Incident')
             conn = engine.connect()
             
         except Exception as err:

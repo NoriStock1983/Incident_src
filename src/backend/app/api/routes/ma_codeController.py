@@ -1,7 +1,11 @@
-from typing import List
 from app.models.DAO.MaCodeRepository import MaCodeRepository
-from fastapi import APIRouter
+from fastapi import APIRouter,Depends
+from fastapi.security import OAuth2PasswordBearer
 
+
+
+# エンドポイントを認証によって保護する場合には、fastapi.securityのOAuth2PasswordBearerを用いる。
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter()
 
 # MA_CODEに登録されいる全件を取得する。
